@@ -3,7 +3,12 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import Item from "./components/Item";
 import FavItem from "./components/FavItem";
 import { useDispatch, useSelector } from "react-redux";
-import { addFav, fetchAnother, getFavsFromLocalStorage } from "./actions";
+import {
+  addFav,
+  fetchAnother,
+  getFavsFromLocalStorage,
+  removeFavsFromLocalStorage,
+} from "./actions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,6 +29,9 @@ export default function App() {
   }
   function handleFetchAnother() {
     dispatch(fetchAnother());
+  }
+  function handleRemoveFavsFromLocalStorage() {
+    dispatch(removeFavsFromLocalStorage());
   }
 
   return (
@@ -77,6 +85,12 @@ export default function App() {
               className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
             >
               Başka bir tane
+            </button>
+            <button
+              onClick={handleRemoveFavsFromLocalStorage}
+              className="select-none px-4 py-2 border border-red-700 text-red-700 hover:border-red-500 hover:text-red-500"
+            >
+              Bütün favorileri sil
             </button>
             <button
               onClick={handleAddToFavs}
